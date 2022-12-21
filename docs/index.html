@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="description" content="Description" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" />
+    <script src="./question/jquery.min.js"></script>
+    <style>
+      li span,
+      li button {
+        margin: 10px;
+      }
+      li {
+        word-break: break-word;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script>
+      window.$docsify = {
+        name: "",
+        repo: "",
+        loadSidebar: true,
+        auto2top: true,
+        autoHeader: true,
+      };
+    </script>
+    <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+    <script>
+      let currentAudio = null;
+      let lastElement = null;
+      var clickAudio = function () {
+        return new Audio(
+          "https://vod.ruotongmusic.com/sv/371bb841-179ccf90325/371bb841-179ccf90325.wav"
+        );
+      };
+      var successAudio = () =>
+        new Audio(
+          "https://vod.ruotongmusic.com/sv/28e211ba-179ccca0dfa/28e211ba-179ccca0dfa.wav"
+        );
+      var failAudio = () =>
+        new Audio(
+          "https://vod.ruotongmusic.com/sv/5dc38d4-179ccc95e2f/5dc38d4-179ccc95e2f.wav"
+        );
+      function randomSort(a, b) {
+        return Math.random() > 0.5 ? -1 : 1;
+      }
+      function removeEmpty(array) {
+        var newArray = [];
+        array.forEach((v) => {
+          if (v) {
+            newArray.push(v);
+          }
+        });
+        return newArray;
+      }
+      function createQuestion(data) {
+        var article = document.getElementsByTagName("article")[0];
+
+        var ol = document.createElement("ol");
+        data.forEach((oneQuestion) => {
+          var question = createOneQuestion(oneQuestion);
+          ol.appendChild(question);
+        });
+
+        article.appendChild(ol);
+      }
+      function createOneQuestion(d) {
+        var li = document.createElement("li");
+
+        var ul = document.createElement("ul");
+        li.appendChild(ul);
+        var li_title = document.createElement("li");
+        li_title.textContent = d.title;
+        var btn_reset = document.createElement("button");
+        btn_reset.textContent = "重置";
+        btn_reset.onclick = function () {
+          for (
+            let index = li_Question.childElementCount - 1;
+            index >= 0;
+            index--
+          ) {
+            const element = li_Question.children[index];
+            element.remove();
+          }
+          for (let index = 0; index < li_words.childElementCount; index++) {
+            const element = li_words.children[index];
+            element.oldValue = undefined;
+          }
+        };
+        li_title.appendChild(btn_reset);
+        var link_play = document.createElement("a");
+        link_play.textContent = "播放";
+        link_play.href =
+          "https://dict.youdao.com/dictvoice?audio=" +
+          d.originalWords.join("+") +
+          "&le=eng&le=eng&type=2";
+        li_title.appendChild(link_play);
+        var li_Question = document.createElement("li");
+
+        var li_words = document.createElement("li");
+        var li_result = document.createElement("li");
+        d.words.forEach((word) => {
+          var button = document.createElement("button");
+          button.innerText = word;
+          button.onclick = function () {
+            clickAudio().play();
+
+            if (button.oldValue === undefined) {
+              var li_word = document.createElement("span");
+              li_word.textContent = word;
+              if (!button.relationId) {
+                button.relationId = guid();
+              }
+              li_word.id = button.relationId;
+              button.oldValue = word;
+              li_Question.appendChild(li_word);
+            } else {
+              button.oldValue = undefined;
+              document.getElementById(button.relationId).remove();
+            }
+
+            check(d, li_Question, li_result);
+          };
+          li_words.appendChild(button);
+        });
+        ul.appendChild(li_title);
+
+        ul.appendChild(li_words);
+        ul.appendChild(li_Question);
+        ul.appendChild(li_result);
+        return li;
+      }
+
+      function check(question, resultElements, li_result) {
+        if (question.words.length !== resultElements.childElementCount) {
+          li_result.textContent = "";
+          return;
+        }
+        var test = undefined;
+        for (let index = 0; index < resultElements.childElementCount; index++) {
+          const element = resultElements.children[index];
+
+          if (test == undefined) {
+            test = element.innerText;
+          } else {
+            test += " " + element.innerText;
+          }
+        }
+        var isSuccess = test == question.answer;
+        if (isSuccess) {
+          li_result.textContent = "正确";
+          successAudio().play();
+          setTimeout(() => {
+            var href =
+              "https://dict.youdao.com/dictvoice?audio=" +
+              question.originalWords.join("+") +
+              "&le=eng&le=eng&type=2";
+            new Audio(href).play();
+          }, 1000);
+        } else {
+          li_result.textContent = "错误";
+
+          failAudio().play();
+        }
+      }
+      function guid() {
+        function S4() {
+          return (((1 + Math.random()) * 0x10000) | 0)
+            .toString(16)
+            .substring(1);
+        }
+        return (
+          S4() +
+          S4() +
+          "-" +
+          S4() +
+          "-" +
+          S4() +
+          "-" +
+          S4() +
+          "-" +
+          S4() +
+          S4() +
+          S4()
+        );
+      }
+      function startPlay(element) {
+        stopPlay();
+        lastElement = element;
+        element.oldText = element.innerText;
+        element.innerText = "停止";
+      }
+      function stopPlay() {
+        if (!lastElement) return;
+        lastElement.innerText = lastElement.oldText;
+        if (currentAudio != null) {
+          currentAudio.pause();
+        }
+      }
+      function playOne(element) {
+        startPlay(element);
+        let url = element.href;
+        currentAudio = new Audio(url);
+        currentAudio.onended = function () {
+          setTimeout((v) => currentAudio.play(), 500);
+        };
+        try {
+          currentAudio.play();
+        } catch (e) {
+          console.error(e);
+
+          stopPlay();
+        }
+      }
+      onmousedown = function (event) {
+        if (event.srcElement.tagName != "A") {
+          return;
+        }
+        event.preventDefault();
+        var innerText = event.srcElement.innerText;
+        if (innerText == "播放") {
+          event.srcElement.onclick = function (e) {
+            e.preventDefault();
+            return false;
+          };
+          playOne(event.srcElement);
+          return false;
+        }
+        if (innerText == "停止") {
+          event.srcElement.onclick = function (e) {
+            e.preventDefault();
+            return false;
+          };
+          stopPlay(lastElement);
+          return false;
+        }
+        var url = event.srcElement.href.replace("/#/./", "/");
+
+        if (innerText == "生成题库") {
+          event.preventDefault();
+          event.srcElement.remove();
+          $.getJSON(url, function (result) {
+            result.forEach((d) => {
+              d.answer = d.answer.trim();
+              var words = d.answer.split(/\s/);
+              words = removeEmpty(words);
+              words.sort(randomSort);
+              d.words = words;
+              d.originalWords = d.answer.split(/\s/);
+              d.originalWords = removeEmpty(d.originalWords);
+            });
+            createQuestion(result);
+          });
+          return false;
+        }
+      };
+    </script>
+  </body>
+</html>
