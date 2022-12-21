@@ -72,6 +72,19 @@
 
         article.appendChild(ol);
       }
+
+      function createDialog(data) {
+        var article = document.getElementsByTagName("article")[0];
+
+        var ol = document.createElement("ol");
+        data.forEach((oneQuestion) => {
+          var question = createOneDialog(oneQuestion);
+          ol.appendChild(question);
+        });
+
+        article.appendChild(ol);
+      }
+
       function createOneQuestion(d) {
         var li = document.createElement("li");
 
@@ -79,6 +92,79 @@
         li.appendChild(ul);
         var li_title = document.createElement("li");
         li_title.textContent = d.title;
+        var btn_reset = document.createElement("button");
+        btn_reset.textContent = "重置";
+        btn_reset.onclick = function () {
+          for (
+            let index = li_Question.childElementCount - 1;
+            index >= 0;
+            index--
+          ) {
+            const element = li_Question.children[index];
+            element.remove();
+          }
+          for (let index = 0; index < li_words.childElementCount; index++) {
+            const element = li_words.children[index];
+            element.oldValue = undefined;
+          }
+        };
+        li_title.appendChild(btn_reset);
+        var link_play = document.createElement("a");
+        link_play.textContent = "播放";
+        link_play.href =
+          "https://dict.youdao.com/dictvoice?audio=" +
+          d.originalWords.join("+") +
+          "&le=eng&le=eng&type=2";
+        li_title.appendChild(link_play);
+        var li_Question = document.createElement("li");
+
+        var li_words = document.createElement("li");
+        var li_result = document.createElement("li");
+        d.words.forEach((word) => {
+          var button = document.createElement("button");
+          button.innerText = word;
+          button.onclick = function () {
+            clickAudio().play();
+
+            if (button.oldValue === undefined) {
+              var li_word = document.createElement("span");
+              li_word.textContent = word;
+              if (!button.relationId) {
+                button.relationId = guid();
+              }
+              li_word.id = button.relationId;
+              button.oldValue = word;
+              li_Question.appendChild(li_word);
+            } else {
+              button.oldValue = undefined;
+              document.getElementById(button.relationId).remove();
+            }
+
+            check(d, li_Question, li_result);
+          };
+          li_words.appendChild(button);
+        });
+        ul.appendChild(li_title);
+
+        ul.appendChild(li_words);
+        ul.appendChild(li_Question);
+        ul.appendChild(li_result);
+        return li;
+      }
+      function createOneDialog(d) {
+        var li = document.createElement("li");
+
+        var ul = document.createElement("ul");
+        li.appendChild(ul);
+
+        d.title.forEach((title) => {
+          var li_title1 = document.createElement("li");
+          li_title1.textContent = title;
+        });
+        d.answer.forEach((answer) => {
+          var li_title1 = document.createElement("li");
+          li_title1.textContent = title;
+        });
         var btn_reset = document.createElement("button");
         btn_reset.textContent = "重置";
         btn_reset.onclick = function () {
@@ -248,7 +334,7 @@
           event.preventDefault();
           event.srcElement.remove();
           $.getJSON(url, function (result) {
-            result.forEach((d) => {
+            result.questions.forEach((d) => {
               d.answer = d.answer.trim();
               var words = d.answer.split(/\s/);
               words = removeEmpty(words);
@@ -258,6 +344,16 @@
               d.originalWords = removeEmpty(d.originalWords);
             });
             createQuestion(result);
+            result.dialogs.forEach((d) => {
+              d.answer = d.answer.trim();
+              var words = d.answer.split(/\s/);
+              words = removeEmpty(words);
+              words.sort(randomSort);
+              d.words = words;
+              d.originalWords = d.answer.split(/\s/);
+              d.originalWords = removeEmpty(d.originalWords);
+            });
+            createDialog(result);
           });
           return false;
         }
