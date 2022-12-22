@@ -99,7 +99,7 @@
         var link_play = document.createElement("a");
         var li_words = document.createElement("li");
         var li_result = document.createElement("li");
-        createWordButton(d.words, li_words, li_Question);
+        createWordButton(d.words,d.answer, li_words, li_Question);
         ul.appendChild(li_title);
         ul.appendChild(li_words);
         ul.appendChild(li_Question);
@@ -121,10 +121,10 @@
           let li_words = document.createElement("li");
           let li_Question = document.createElement("li");
           let li_action = document.createElement("li");
-          createWordButton(answer.words, li_words, li_Question);
+          createWordButton(answer.words,answer.en, li_words, li_Question);
 
           createResetButton(li_action, li_Question, li_words);
-          createPlayLink(li_action,  answer.originalWords);
+          createPlayLink(li_action, answer.originalWords);
           ul.appendChild(li_words);
           ul.appendChild(li_Question);
           ul.appendChild(li_action);
@@ -135,7 +135,7 @@
         return li;
       }
 
-      function createWordButton(words, parent, li_Question) {
+      function createWordButton(words, answer, parent, li_Question) {
         words.forEach((word) => {
           var button = document.createElement("button");
           button.innerText = word;
@@ -156,7 +156,7 @@
               document.getElementById(button.relationId).remove();
             }
 
-            check(d, li_Question, li_result);
+            check(words.length, answer, li_Question, li_result);
           };
           parent.appendChild(button);
         });
@@ -191,8 +191,8 @@
         liparent.appendChild(btn_reset);
       }
 
-      function check(question, resultElements, li_result) {
-        if (question.words.length !== resultElements.childElementCount) {
+      function check(wordLength, answer, resultElements, li_result) {
+        if (wordLength !== resultElements.childElementCount) {
           li_result.textContent = "";
           return;
         }
@@ -206,7 +206,7 @@
             test += " " + element.innerText;
           }
         }
-        var isSuccess = test == question.answer;
+        var isSuccess = test == answer;
         if (isSuccess) {
           li_result.textContent = "正确";
           successAudio().play();
