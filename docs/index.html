@@ -217,6 +217,7 @@
         btn_reset.onclick = function () {
           li_Question.lastButtons.forEach((element) => {
             element.className = "";
+            element.oldValue = undefined;
           });
           li_Question.lastButtons = [];
           for (
