@@ -32,9 +32,9 @@
         "——第一层橱柜里有一盒饼干和一块巧克力。"
       ],
       "answer": [
-        { "en": "——Mom, I\u0027m hungry！Is there something to eat?" },
+        { "en": "Mom, I\u0027m hungry！Is there something to eat?" },
         {
-          "en": "——There is a box of biscuits and a bar of chocolate in the first cupboard."
+          "en": "There is a box of biscuits and a bar of chocolate in the first cupboard."
         }
       ]
     },
@@ -45,11 +45,11 @@
         "——你真富有。"
       ],
       "answer": [
-        { "en": "——What are there in your cloakroom?" },
+        { "en": "What are there in your cloakroom?" },
         {
-          "en": "——There are one hundred pairs of high-heel shoes and more than one thousand clothes in it."
+          "en": "There are one hundred pairs of high-heel shoes and more than one thousand clothes in it."
         },
-        { "en": "——You are very rich." }
+        { "en": "You are very rich." }
       ]
     },
     {
@@ -58,8 +58,8 @@
         "——太可怕了，这个地区的庄稼长得不好。"
       ],
       "answer": [
-        { "en": "——There has been no rain for several months." },
-        { "en": "——It is terrible. The crop does not grow well in this area." }
+        { "en": "There has been no rain for several months." },
+        { "en": "It is terrible. The crop does not grow well in this area." }
       ]
     }
   ]
