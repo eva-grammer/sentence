@@ -323,6 +323,16 @@
           stopPlay();
         }
       }
+      function handlerDialogEnWord(d, propertyName) {
+        d[propertyName] = d[propertyName].trim();
+        var words = d[propertyName].split(/\s/);
+        words = removeEmpty(words);
+        words.sort(randomSort);
+        d.words = words;
+        d.originalWords = d[propertyName].split(/\s/);
+        d.originalWords = removeEmpty(d.originalWords);
+      }
+    
       onmousedown = function (event) {
         if (event.srcElement.tagName != "A") {
           return;
@@ -366,15 +376,6 @@
         }
       };
 
-      function handlerDialogEnWord(d, propertyName) {
-        d[propertyName] = d[propertyName].trim();
-        var words = d[propertyName].split(/\s/);
-        words = removeEmpty(words);
-        words.sort(randomSort);
-        d.words = words;
-        d.originalWords = d[propertyName].split(/\s/);
-        d.originalWords = removeEmpty(d.originalWords);
-      }
-    </script>
+   </script>
   </body>
 </html>
