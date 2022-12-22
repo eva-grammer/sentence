@@ -19,6 +19,9 @@
       li {
         word-break: break-word;
       }
+      .select {
+        background-color: rgb(241 232 228);
+      }
     </style>
   </head>
   <body>
@@ -176,14 +179,15 @@
               }
               li_word.id = button.relationId;
               button.oldValue = word;
-
+              button.className = "select";
               lastButtons.push(button);
               li_Question.appendChild(li_word);
             } else {
-            var  lastButton=lastButtons[lastButtons.length-1];
+              var lastButton = lastButtons[lastButtons.length - 1];
               if (lastButton == button) {
-                lastButtons.length-=1;
+                lastButtons.length -= 1;
                 button.oldValue = undefined;
+                button.className = "";
                 var relation = document.getElementById(button.relationId);
                 if (relation) relation.remove();
               }
