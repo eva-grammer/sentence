@@ -1,0 +1,20 @@
+7.f60817b2.js  16577行
+
+获取 _0x458c73  的值就是html 然后进行处理
+ if ('string' == typeof _0x3c4fb7[0x0] && _0x3c4fb7[0x0]['length'] > 0x0 && _0x2ecc('0x249') == typeof _0x3c4fb7[0x1] && _0x3c4fb7[0x1]['length'] > 0x0 && 'string' == typeof _0x3c4fb7[0x3] && _0x3c4fb7[0x3]['length'] > 0x0) {
+                                        var _0x5a8922 = _0x4b99ab['dS'](_0x3c4fb7[0x2]);
+                                        _0x5a8922 = _0x3a9875['parse'](_0x5a8922);
+                                        var _0x458c73 = _0x3c4fb7[0x0] + _0x3c4fb7[0x1] + _0x3c4fb7[0x3];
+                                        '...' === (_0x458c73 = _0x4b99ab['dH'](_0x458c73)) && (_0x458c73 = _0x104055['chapterTitleText']),
+                                        _0x458c73 = _0x1f2f5b['parse'](_0x458c73, _0x5a8922, _0x96ec82['sectionStep']),
+                                        _0x5c8ede(_0x972962['UPDATE_READER_CONTENT_HTML'], _0x458c73),
+                                        _0x5c8ede(_0x972962['UPDATE_READER_CONTENT_STYLES'], _0x5a8922);
+                                        var _0x193fd1 = _0x104055['getCurrentProgressSectionIdx'];
+                                        _0x23cb16 && _0x23cb16[_0x2ecc('0x37a')] && (_0x193fd1 = _0x458c73['length'] - 0x1),
+                                        _0x5c8ede(_0x972962['UPDATE_READER_CURRENT_SECTION'], _0x193fd1),
+                                        _0x5c8ede(_0x972962['UPDATE_READER_CONTENT_STATE'], 'PRERENDER');
+                                        try {
+                                            _0xecdfc7(_0x456ad4['MARK_FETCH_END']);
+                                        } catch (_0x20ab8d) {
+                                            _0x11c8a4['inDevelopment']() && console['log'](_0x20ab8d);
+                                        }

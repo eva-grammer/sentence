@@ -11,14 +11,21 @@
     7.  Lesson 7[There being……](./f007.md)
     8.  Lesson 8[What/where+……+be there……](./f008.md)
     9.  Lesson 9[There+不及物动词+主语+状语](./f009.md)
-
-    **Unit1 There be句型**
-
-    10. Lesson 1　[There be……有……](./f0101.md)
-    11. Lesson 2　[There be……有……](./f0102.md)
-
-    **Unit2 比较句型**
-
-    12. Lesson 1　[There be……有……](./f0201.md)
-    13. Lesson 2　[There be……有……](./f0202.md)
+    **Unit 2　比较句型**
+    10.  Lesson 10[I like nothing better than……我喜欢……胜过任何东西](./f010.md)
+    11.  Lesson 11[I prefer to……rather than……我宁愿……而不愿……](./f011.md)
+    12.  Lesson 12[I prefer……to……我喜欢……甚于……](./f012.md)
+    13.  Lesson 13[I would like to……rather than……我宁愿……也不……](./f013.md)
+    14.  Lesson 14[I'd rather……我还是……吧](./f014.md)
+    15.  Lesson 15[I would rather……than……我宁愿……而不愿……](./f015.md)
+    16.  Lesson 16[……junior to……年纪较……低/职位较……低](./f016.md)
+    17.  Lesson 17[……as+形容词/副词+as……和……一样](./f017.md)
+    18.  Lesson 18[……no more/less than……不比……多/不少于……](./f018.md)
+    19.  Lesson 19[be equal to……和……相当](./f019.md)
+    20.  Lesson 20[compare with/to……与……比较](./f020.md)
+    21.  Lesson 21[next to……次于……](./f021.md)
+    22.  Lesson 22[The……，the……越……越……](./f022.md)
+    23.  Lesson 23[……否定词+so/as……as……不像……一样](./f023.md)
+    24.  Lesson 24[but on the contrary　和……相反](./f024.md)
+    25.  Lesson 25[……while/whereas……](./f025.md)
 
