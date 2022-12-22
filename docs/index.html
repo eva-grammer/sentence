@@ -170,7 +170,9 @@
           button.innerText = word;
           button.onclick = function () {
             clickAudio().play();
-
+            if (li_Question.childElementCount == 0) {
+              lastButtons = [];
+            }
             if (button.oldValue === undefined) {
               var li_word = document.createElement("span");
               li_word.textContent = word;
@@ -212,6 +214,10 @@
         var btn_reset = document.createElement("button");
         btn_reset.textContent = "重置";
         btn_reset.onclick = function () {
+          lastButtons.forEach((element) => {
+            element.className = "";
+          });
+          lastButtons = [];
           for (
             let index = li_Question.childElementCount - 1;
             index >= 0;
