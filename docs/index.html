@@ -99,7 +99,7 @@
         var link_play = document.createElement("a");
         var li_words = document.createElement("li");
         var li_result = document.createElement("li");
-        createWordButton(d.words,d.answer, li_words, li_Question);
+        createWordButton(d.words,d.answer, li_words, li_Question,li_result);
         ul.appendChild(li_title);
         ul.appendChild(li_words);
         ul.appendChild(li_Question);
@@ -121,21 +121,22 @@
           let li_words = document.createElement("li");
           let li_Question = document.createElement("li");
           let li_action = document.createElement("li");
-          createWordButton(answer.words,answer.en, li_words, li_Question);
+          var li_result = document.createElement("li");
+          createWordButton(answer.words,answer.en, li_words, li_Question,li_result);
 
           createResetButton(li_action, li_Question, li_words);
           createPlayLink(li_action, answer.originalWords);
           ul.appendChild(li_words);
           ul.appendChild(li_Question);
           ul.appendChild(li_action);
-          var li_result = document.createElement("li");
+         
           ul.appendChild(li_result);
         });
 
         return li;
       }
 
-      function createWordButton(words, answer, parent, li_Question) {
+      function createWordButton(words, answer, parent, li_Question,li_result) {
         words.forEach((word) => {
           var button = document.createElement("button");
           button.innerText = word;
