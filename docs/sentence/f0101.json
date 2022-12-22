@@ -1,28 +1,28 @@
 ﻿{
   "questions": [
     {
-      "title": "There is a watermelon and some oranges on the table.",
-      "answer": "桌子上有一个西瓜和一些橘子。"
+      "title": "桌子上有一个西瓜和一些橘子。",
+      "answer": "There is a watermelon and some oranges on the table."
     },
     {
-      "title": "There is going to be a large basketball match in our city next week.",
-      "answer": "我市下周将有一场大型的篮球比赛。"
+      "title": "我市下周将有一场大型的篮球比赛。",
+      "answer": "There is going to be a large basketball match in our city next week."
     },
     {
-      "title": "There was a Faye Wong concert in Hong Kong last night.",
-      "answer": "昨晚香港有一场王菲的演唱会。"
+      "title": "昨晚香港有一场王菲的演唱会。",
+      "answer": "There was a Faye Wong concert in Hong Kong last night."
     },
     {
-      "title": "There is a painting by Van Gogh on the wall in Tom\u0027s home.",
-      "answer": "汤姆家的墙上有一幅梵高的画。"
+      "title": "汤姆家的墙上有一幅梵高的画。",
+      "answer": "There is a painting by Van Gogh on the wall in Tom\u0027s home."
     },
     {
-      "title": "There are some potato chips in the dish.",
-      "answer": "碟子里有一些土豆片。"
+      "title": "碟子里有一些土豆片。",
+      "answer": "There are some potato chips in the dish."
     },
     {
-      "title": "There will be a football game in our school next Friday.",
-      "answer": "下周五我们学校将会有一场足球比赛。"
+      "title": "下周五我们学校将会有一场足球比赛。",
+      "answer": "There will be a football game in our school next Friday."
     }
   ],
   "dialogs": [
