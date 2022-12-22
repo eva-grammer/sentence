@@ -70,7 +70,7 @@
           var question = createOneQuestion(oneQuestion);
           ol.appendChild(question);
         });
-        
+
         article.appendChild(h1);
         article.appendChild(ol);
       }
@@ -153,7 +153,7 @@
 
         return li;
       }
-
+      var lastButton = null;
       function createWordButton(
         words,
         answer,
@@ -176,10 +176,14 @@
               }
               li_word.id = button.relationId;
               button.oldValue = word;
+              lastButton = button;
               li_Question.appendChild(li_word);
             } else {
-              button.oldValue = undefined;
-              document.getElementById(button.relationId).remove();
+              if (lastButton == button) {
+                button.oldValue = undefined;
+                var relation = document.getElementById(button.relationId);
+                if (relation) relation.remove();
+              }
             }
 
             check(words.length, answer, li_Question, li_result, originalWords);
