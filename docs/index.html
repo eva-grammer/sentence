@@ -63,26 +63,29 @@
       }
       function createQuestion(data) {
         var article = document.getElementsByTagName("article")[0];
-
+        var h1 = document.createElement("h1");
+        h1.innerText = "句型练习";
         var ol = document.createElement("ol");
         data.forEach((oneQuestion) => {
           var question = createOneQuestion(oneQuestion);
           ol.appendChild(question);
         });
-
-        article.appendChild(ol);
+        h1.appendChild(ol);
+        article.appendChild(h1);
       }
 
       function createDialog(data) {
         var article = document.getElementsByTagName("article")[0];
-
+        var h1 = document.createElement("h1");
+        h1.innerText = "对话练习";
         var ol = document.createElement("ol");
         data.forEach((oneDialog) => {
           var question = createOneDialog(oneDialog);
           ol.appendChild(question);
         });
 
-        article.appendChild(ol);
+        h1.appendChild(ol);
+        article.appendChild(h1);
       }
 
       function createOneQuestion(d) {
